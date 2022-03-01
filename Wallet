@@ -1,0 +1,28 @@
+
+// Pragma is throught which we write the smart contract
+
+pragma solidity 0.6.0;
+
+// Creating a contract
+contract etherwallet {
+  
+  // Necessary add a public address that will can outside contract
+  address payable public Owner;
+  
+  //mapping the transactions
+  mapping(address=>uint) public Balances;
+  
+  //Events to specific contract change your declare
+  Event Sent( address from, address to, uint amount);
+  
+  //Necessary define the constructor is payable, which means cost ehter during the creation
+    Constructor() public payable {
+  
+      //Msg.sender is the address of the person responsible for the currently deployed smart contract,
+      Owner = msg.sender
+  
+      //Send an amount created to an address can be called only the constract creator
+      function sendMoney (address payable receiver, uint amount) public payable {
+        require (msg.sender == Owner);
+        balances [receiver] +=amount
+      
